@@ -1,6 +1,8 @@
 import { Temporal } from '@js-temporal/polyfill';
+let apikey = ""
+
 async function getWeatherAndTimezone() {
-  let response = await fetch('https://api.openweathermap.org/data/2.5/group?id=524901,703448,2643743&units=metric&APPID=ab1831ff378ed52138a811ff0f60dc1f')
+  let response = await fetch('https://api.openweathermap.org/data/2.5/group?id=524901,703448,2643743&units=metric&APPID=' + apikey)
   let weather = await response.json()
   return weather
 }
@@ -24,16 +26,5 @@ for (let i = 0; i < response.cnt; i++) {
   console.log(response.list[i])
 }
 
-let seconds: number = 3600
 
-// converting seconds to utc format in the hackiest way known to man.
-// @ts-ignore SIlence this for now since i'll probably delete it later.
-const date: Date = new Date(null);
-date.setSeconds(seconds);
-let result: string = date.toISOString().slice(11, 16);
-result = "+" + result;
-
-console.log(result)
-let tz = Temporal.TimeZone.from(result)
-let timestamp = Temporal.Instant.fromEpochSeconds(0);
-console.log(tz.getOffsetNanosecondsFor(timestamp))
+let htmlNotelet: string = '<div id="notelet"> <div class="weatherCard"> <div class="currentTemp"><span class="temp">25°</span><span class="location">Brussels</span></div><div class="currentWeather"><span class="conditions">&#xf0e7;</span><div class="info"><span class="rain">1.3 MM</span><span class="wind">10 MPH</span></div></div><div class="time">MONDAY | SEP 12 | 12:34</div></div></div>';
