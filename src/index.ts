@@ -1,6 +1,6 @@
 import { Temporal } from '@js-temporal/polyfill';
 async function getWeatherAndTimezone() {
-  let response = await fetch('https://api.openweathermap.org/data/2.5/group?id=524901,703448,2643743&units=metric&APPID=ab1831ff378ed52138a811ff0f60dc1f')
+  let response = await fetch('https://api.openweathermap.org/data/2.5/group?id=524901,703448,2643743&units=metric&APPID={API KEY}')
   let weather = await response.json()
   return weather
 }
